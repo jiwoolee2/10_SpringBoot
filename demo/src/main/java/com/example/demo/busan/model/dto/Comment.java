@@ -12,6 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor 
 @Getter 
 @Setter
+@ToString
 public class Comment {
 	
 	private Long seq;

@@ -41,7 +41,7 @@ public class BusanController {
 	}
 	
 	// 2절하기
-	// 요청 url이 /busans/abc -> @GetMapping("/ddd")
+	// 요청 url이 /busans/abc -> @GetMapping("/abc")
 	//		    /busans/ddd -> @GetMapping("/ddd")
 	// @PathVariable : Mapping으로 넘어온 값을 매개변수로 쓸 때 사용
 	@GetMapping("/{id}")  // /busans/임의의숫자
