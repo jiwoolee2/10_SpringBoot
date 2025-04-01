@@ -1,17 +1,27 @@
 package com.example.demo.member.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.member.model.dto.MemberDTO;
+import com.example.demo.member.model.service.MemberService;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
+@CrossOrigin("*")
 @RequestMapping("members")  // 복수형을 쓰는 것이 원칙
+@RequiredArgsConstructor
 public class MemberController {
 
+	private final MemberService memberService;
 	/*
 	 * 회원가입 자원요청을 받으면
 	 * 아이디.비밀번호.이름을 받아서 가공해서 서비스로 넘김
@@ -30,9 +40,10 @@ public class MemberController {
 	 */
 	
 	@PostMapping
-	public ResponseEntity<?> signUp(){
-		log.info("낸나나나나나ㅏ");
-		return null;
+	public ResponseEntity<?> signUp(@RequestBody @Valid MemberDTO member){
+		log.info("member : {}",member);
+		memberService.signUp(member);
+		return ResponseEntity.status(201).build(); // 회원가입 완료
 	}
 	
 }

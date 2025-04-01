@@ -1,14 +1,18 @@
 package com.kh.start.member.controller;
 
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kh.start.member.model.dto.ChangePasswordDTO;
 import com.kh.start.member.model.dto.MemberDTO;
 import com.kh.start.member.model.service.MemberService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,10 +46,57 @@ public class MemberController {
 	 */
 	
 	@PostMapping
-	public ResponseEntity<?> signUp(@RequestBody MemberDTO member){
+	public ResponseEntity<?> signUp(@RequestBody @Valid MemberDTO member){
 		//log.info("낸나나나나나ㅏ {}",member);
 		memberService.signUp(member);
 		return ResponseEntity.status(201).build(); // 상태코드 201 : 성공적으로 데이터가 생성됨
 	}
 	
+	
+	/*
+	 * {
+"원래비밀번호" : "1234"
+"바꿀비밀번호" : "12345"  ==> 이런 식으로 앞단에서 요청 보냄
 }
+	 * 원래 비밀번호 :
+	 * 바꿀 비밀번호 :
+	 * 바꿀 비밀번호 확인 :
+	 */
+	// 비밀번호 변경 기능 구현 (회원 정보 수정)
+	@PutMapping
+	public ResponseEntity<?> changePassword(@RequestBody @Valid ChangePasswordDTO passwordEntity ){
+		log.info("비밀번호 잘 넘어오나요 : {}",passwordEntity);
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
