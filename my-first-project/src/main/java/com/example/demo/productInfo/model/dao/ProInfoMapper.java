@@ -9,8 +9,7 @@ import com.example.demo.productInfo.model.dto.ProInfoDTO;
 @Mapper
 public interface ProInfoMapper {
 
-	@Select("SELECT PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,PRODUCT_CATEGORY,PRODUCT_PRICE,PRODUCT_IMAGE FROM PRODUCT_INFO WHERE PRODUCT_TYPE=#{productType} AND PRODUCT_CATEGORY=#{productCategory}")
+	@Select("SELECT PRODUCT_ID productId,PRODUCT_NAME productName,PRODUCT_TYPE productType,PRODUCT_CATEGORY productCategory,PRODUCT_PRICE productPrice,PRODUCT_IMAGE productImage FROM PRODUCT_INFO WHERE PRODUCT_TYPE = #{productType} AND PRODUCT_CATEGORY = #{productCategory}")
 	List<ProInfoDTO> selectProduct(ProInfoDTO proInfoDTO);
 	
-
 }

@@ -8,7 +8,9 @@ import com.example.demo.productInfo.model.dao.ProInfoMapper;
 import com.example.demo.productInfo.model.dto.ProInfoDTO;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProInfoServiceImpl implements ProInfoService {
@@ -17,7 +19,10 @@ public class ProInfoServiceImpl implements ProInfoService {
 	
 	public List<ProInfoDTO> selectProduct(ProInfoDTO proInfoDTO){
 		
+		List<ProInfoDTO> productInfo = proInfoMapper.selectProduct(proInfoDTO);
 		
-		return proInfoMapper.selectProduct(proInfoDTO);
+		
+		log.info("pro : {}",productInfo);
+		return productInfo;
 	}
 }

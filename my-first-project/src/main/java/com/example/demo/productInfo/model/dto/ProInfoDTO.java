@@ -15,8 +15,8 @@ public class ProInfoDTO {
 
 	private String productId;
 	private String productName;
-	private String productType;
-	private String productCategory;
+	private String productType;     // 옷 종류 (collection,sweat)
+	private String productCategory; // 카테고리 (new,men...)
 	private int productPrice;
 	private String productImage;
 }

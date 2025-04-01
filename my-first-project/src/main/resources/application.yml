@@ -9,3 +9,12 @@ spring:
 
 server:
   port:  81
+
+logging:
+  level:
+    com.example.demo.productInfo: DEBUG
+    org.mybatis: DEBUG
+    org.apache.ibatis: DEBUG	
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
