@@ -67,7 +67,8 @@ public class AuthServiceImpl implements AuthService {
 		//String refreshToken = jwtUtil.getRefreshToken(user.getUsername());
 		//log.info(" accessTokne값 \n refreshTokon값 {}, : {}",accessToken,refreshToken);
 		
-		Map<String, String> loginResponse = tokenService.generateToken(user.getUsername());
+		Map<String, String> loginResponse = tokenService.generateToken(user.getUsername(),
+																	   user.getMemberNo());
 		loginResponse.put("memberId", user.getUsername());
 		loginResponse.put("memberName", user.getMemberName());
 		

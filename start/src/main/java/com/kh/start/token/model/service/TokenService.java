@@ -11,7 +11,7 @@ public interface TokenService {
 	//String refreshToken = jwtUtil.getRefreshToken(user.getUsername());
 	
 	// 여기서 username = memberId;
-	Map<String, String> generateToken(String username);
+	Map<String, String> generateToken(String username, Long memberNo);
 	
 	
 
@@ -22,4 +22,6 @@ public interface TokenService {
 	
 	// 5. 사용자가 RefreshToken을 가지고 증명하려 할 때 DB가서 조회해오기
 	
+	
+	Map<String, String> refreshToken(String refreshToken);
 }

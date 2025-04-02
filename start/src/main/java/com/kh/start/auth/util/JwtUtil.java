@@ -8,6 +8,8 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.impl.security.KeysBridge;
 import io.jsonwebtoken.security.Keys;
@@ -49,6 +51,17 @@ public class JwtUtil {
 							  .signWith(key) // 서명
 							  .compact();
 		
+	}
+	
+	
+	// 얘가 알아서 토큰 검증 - 유효일 안지났는지, 우리가발급한게 맞는지
+	public Claims parseJwt(String token) {
+		
+		return Jwts.parser()
+				   .verifyWith(key)
+				   .build()
+				   .parseSignedClaims(token)
+				   .getPayload();
 	}
 		
 }

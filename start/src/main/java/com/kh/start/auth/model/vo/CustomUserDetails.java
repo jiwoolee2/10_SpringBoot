@@ -22,4 +22,5 @@ public class CustomUserDetails implements UserDetails{
 	private String memberName;
 
 	private Collection<? extends GrantedAuthority> authorities;
+
 }
