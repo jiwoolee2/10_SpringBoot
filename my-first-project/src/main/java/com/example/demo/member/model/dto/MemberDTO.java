@@ -35,6 +35,7 @@ public class MemberDTO {
 	@Pattern(regexp = "^[0-9]*$", message = "숫자만 입력해주세요.")
 	@NotBlank(message = "전화번호를 입력해주세요.")
 	private String memberPhone;
+	private String role;
 	private Date enrollDate;
 	
 

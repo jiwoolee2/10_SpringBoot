@@ -6,15 +6,16 @@ spring:
     username: KH18_LJW
     password: KH1234
     driver-class-name: oracle.jdbc.OracleDriver
-
+  profiles:
+    include: private
 server:
-  port:  81
+  port:  80
 
 logging:
   level:
     com.example.demo.productInfo: DEBUG
     org.mybatis: DEBUG
-    org.apache.ibatis: DEBUG	
+    org.apache.ibatis: DEBUG  
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

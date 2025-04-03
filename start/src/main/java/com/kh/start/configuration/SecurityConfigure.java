@@ -55,8 +55,10 @@ public class SecurityConfigure {
 						   .authorizeHttpRequests(requests ->{
 							   requests.requestMatchers(HttpMethod.POST,"/auth/login","/auth/refresh","/members").permitAll(); // => 인가절차 없이 바로 수행될 수 있게함
 							   requests.requestMatchers("/admin/**").hasRole("ADMIN"); // admin으로 들어오는 요청은 Role이 ADMIN일 때만 수행
-							   requests.requestMatchers(HttpMethod.PUT,"/members").authenticated(); // => 인가를받지못하면(권한x) 수행 x
-							   requests.requestMatchers(HttpMethod.DELETE,"/members").authenticated(); // => 인가를받지못하면(권한x) 수행 x
+							   requests.requestMatchers(HttpMethod.GET,"/uploads/**","/boards/**","/comments/**","/comments").permitAll();
+							   requests.requestMatchers(HttpMethod.PUT,"/members","/boards/**").authenticated(); // => 인가를받지못하면(권한x) 수행 x
+							   requests.requestMatchers(HttpMethod.DELETE,"/members","/boards/**").authenticated(); // => 인가를받지못하면(권한x) 수행 x
+							   requests.requestMatchers(HttpMethod.POST,"/boards","/comments").authenticated(); // => 인가를받지못하면(권한x) 수행 x
 						   })
 						   /*
 						    * sessionManagement : 세션을 어떻게 관리할 것인지를 지정할 수 있음

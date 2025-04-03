@@ -20,5 +20,13 @@ public class ExceptionComeHere {
 		// badRequest는 상태코드 400
 		return ResponseEntity.badRequest().body(error);
 	}
+	
+	@ExceptionHandler
+	public ResponseEntity<?> WrongIdPasswordError(WrongIdPasswordException e){
+		Map<String, String> error = new HashMap(); 
+		error.put("error-message", e.getMessage());
+		return ResponseEntity.badRequest().body(error);
+	}
+	
 
 }

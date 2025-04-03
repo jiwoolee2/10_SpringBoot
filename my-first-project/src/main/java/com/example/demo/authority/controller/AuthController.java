@@ -1,5 +1,7 @@
 package com.example.demo.authority.controller;
 
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +25,10 @@ public class AuthController {
 	private final AuthService authService;
 	
 	@PostMapping("/log-in")
-	public ResponseEntity<?> logIn(@RequestBody @Valid MemberDTO member){
+	public Map<String, String> logIn(@RequestBody MemberDTO member){
 		
-		authService.logIn(member);
-		return null;
+		Map<String, String> mytokens = authService.logIn(member);
+		return mytokens;
 	}
 	
 }

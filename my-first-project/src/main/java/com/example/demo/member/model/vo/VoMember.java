@@ -16,6 +16,7 @@ public class VoMember {
 	private String memberPw;
 	private String memberName;
 	private String memberPhone;
+	private String role;
 	private Date enrollDate;
 
 }

@@ -10,6 +10,7 @@ public interface TokenMapper {
 	void saveToken(RefreshToken token);
 	
 	RefreshToken findByToken(RefreshToken token);
+
+	void deleteExpiredRefreshToken(long timeMillis);
 	
-	void deleteExpiredRefreshToken(Long now);
 }

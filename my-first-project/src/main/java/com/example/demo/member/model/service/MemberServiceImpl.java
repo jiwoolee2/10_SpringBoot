@@ -40,6 +40,7 @@ public class MemberServiceImpl implements MemberService {
 											  .memberPw(passwordEncoder.encode(member.getMemberPw()))
 											  .memberName(member.getMemberName())
 											  .memberPhone(member.getMemberPhone())
+											  .role("ROLE_USER")
 											  .build();
 				
 		memberMapper.signUp(voMember);

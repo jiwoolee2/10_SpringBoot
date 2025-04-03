@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.kh.start.auth.model.vo.CustomUserDetails;
@@ -71,8 +72,18 @@ public class AuthServiceImpl implements AuthService {
 																	   user.getMemberNo());
 		loginResponse.put("memberId", user.getUsername());
 		loginResponse.put("memberName", user.getMemberName());
+		loginResponse.put("memberNo", String.valueOf(user.getMemberNo()));
 		
 		return loginResponse;
+	}
+	
+	// 로그인 인증이 성공하면 발급된 토큰에서 정보를 뺴내는 역할을 하는 메서드
+	@Override
+	public CustomUserDetails getUserDetails() {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		CustomUserDetails user = (CustomUserDetails)auth.getPrincipal();
+		return user;
 	}
 
 	

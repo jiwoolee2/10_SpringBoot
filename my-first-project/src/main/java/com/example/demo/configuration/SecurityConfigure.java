@@ -2,13 +2,17 @@ package com.example.demo.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration // 메서드 Bean으로 등록
 public class SecurityConfigure {
@@ -18,13 +22,21 @@ public class SecurityConfigure {
 	// => securityFilterChain을 반환하는 메서드를 만들어야함
 	
 	@Bean
-	   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-	      
-	   
-		return httpSecurity.formLogin(AbstractHttpConfigurer::disable) //=> formLogin 비활성화
-						   .httpBasic(AbstractHttpConfigurer::disable)
-						   .csrf(AbstractHttpConfigurer::disable)
-							.build(); 
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+      
+   
+	return httpSecurity.formLogin(AbstractHttpConfigurer::disable) //=> formLogin 비활성화
+					   .httpBasic(AbstractHttpConfigurer::disable)
+					   .csrf(AbstractHttpConfigurer::disable)
+					   .authorizeHttpRequests(requests->
+					   {
+						   requests.requestMatchers(HttpMethod.POST,"/log-in","/members").permitAll();
+						   requests.requestMatchers(HttpMethod.GET,"/productinfo/**").permitAll();
+						   requests.requestMatchers("/admin/**").hasRole("ADMIN");
+						   
+					   })
+					   
+						.build(); 
 	}
 	
 	@Bean
@@ -32,4 +44,9 @@ public class SecurityConfigure {
 		return new BCryptPasswordEncoder();
 	}
 	
+	
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+		return authConfig.getAuthenticationManager();
+	}
 }
