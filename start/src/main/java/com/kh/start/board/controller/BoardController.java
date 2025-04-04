@@ -1,7 +1,8 @@
 package com.kh.start.board.controller;
 
 
-import java.awt.List;
+
+import java.util.List;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,7 @@ public class BoardController {
 	
 	// 특정 페이지의 게시글목록 조회하기
 	@GetMapping
-	public ResponseEntity<java.util.List<BoardDTO>> findAll(@RequestParam(name = "page",defaultValue="0") int page){
+	public ResponseEntity<List<BoardDTO>> findAll(@RequestParam(name = "page",defaultValue="0") int page){
 		
 		return ResponseEntity.ok(boardService.findAll(page));
 	}
