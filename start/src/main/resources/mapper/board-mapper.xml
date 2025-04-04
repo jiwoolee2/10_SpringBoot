@@ -7,7 +7,7 @@
 
 	<sql id="boardColumn">
 		SELECT
-				BOARD_NO baordNo
+				BOARD_NO boardNo
 			   ,BOARD_TITLE boardTitle	
 			   ,MEMBER_NO boardWriter	
 			   ,CREATE_DATE createDate

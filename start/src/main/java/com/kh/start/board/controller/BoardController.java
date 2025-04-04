@@ -45,7 +45,7 @@ public class BoardController {
 	public ResponseEntity<?> save(BoardDTO board, 
 			@RequestParam(name="file",required=false) MultipartFile file){
 		
-		log.info("게시글 정보 : {} , 파일 정보 : {}",board,file.getOriginalFilename());
+//		log.info("게시글 정보 : {} , 파일 정보 : {}",board,file.getOriginalFilename());
 		
 		boardService.save(board, file);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
