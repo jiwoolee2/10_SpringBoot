@@ -50,7 +50,7 @@ public class JwtFilter extends OncePerRequestFilter{
 	
 		
 		String token = authorization.substring(7);
-		log.info("토큰값 : {}",token);
+		log.info("토ss큰값 : {}",token);
 		
 		// 1. 서버에서 관리하는 비밀키로 만들어진 것이 맞는가?
 		// 2. 유효기간이 안지났는가?
@@ -66,12 +66,14 @@ public class JwtFilter extends OncePerRequestFilter{
 			String username = claims.getSubject(); // 토큰에서 아이디 추출
 			
 			// userDetailsService에 username로 select해서 memberDTO반환받는 mapper
-			
+			log.info("user : {}",username);
 			// 인가받는데 성공한 사용자으 ㅣ정보가 필요함
 			// 사용자의 정보를 SecurityContexdtHolder -> cContext -> Authentication 담을 것
 			CustomUserDetails user = (CustomUserDetails)userService.loadUserByUsername(username);
 			UsernamePasswordAuthenticationToken authentication
 			= new UsernamePasswordAuthenticationToken(user,null,user.getAuthorities()); // 마지막에 role
+			
+			log.info("user : {}",user);
 			
 			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 			// 세부설정 사용자의 IP주소, MAC주소, SessionID 등등이 포함될 수 있음

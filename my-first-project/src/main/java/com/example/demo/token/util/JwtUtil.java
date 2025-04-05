@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -63,7 +64,15 @@ public class JwtUtil {
 		}
 	
 	
-	
+		// 얘가 알아서 토큰 검증 - 유효일 안지났는지, 우리가발급한게 맞는지
+		public Claims parseJwt(String token) {
+			
+			return Jwts.parser()
+					   .verifyWith(key)
+					   .build()
+					   .parseSignedClaims(token)
+					   .getPayload();
+		}	
 	
 	
 	

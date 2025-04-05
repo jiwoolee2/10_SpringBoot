@@ -43,7 +43,9 @@ public class AuthServiceImpl implements AuthService {
 	
 	// 토큰 생성해서 주기
 	Map<String, String> mytokens = tokenService.MyToken(user.getUsername());
-	
+	mytokens.put("memberId", user.getUsername());
+	mytokens.put("memberName", user.getMemberName());
+	mytokens.put("memberPhone", user.getMemberPhone());
 	
 	return mytokens;
 		

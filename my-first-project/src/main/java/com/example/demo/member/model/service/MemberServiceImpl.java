@@ -12,7 +12,9 @@ import com.example.demo.member.model.dto.MemberDTO;
 import com.example.demo.member.model.vo.VoMember;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
@@ -35,6 +37,8 @@ public class MemberServiceImpl implements MemberService {
 			throw new ExistIdException("존재하는 아이디 입니다."); 		
 		} 
 		
+		
+		log.info("{}",member);
 		// 비밀번호 암호화
 		VoMember voMember = VoMember.builder().memberId(member.getMemberId())
 											  .memberPw(passwordEncoder.encode(member.getMemberPw()))
@@ -42,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 											  .memberPhone(member.getMemberPhone())
 											  .role("ROLE_USER")
 											  .build();
-				
+		log.info("ssss{}",voMember);	
 		memberMapper.signUp(voMember);
 
 	}
