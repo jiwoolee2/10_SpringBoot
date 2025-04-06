@@ -9,5 +9,9 @@ public interface BoardService {
 	
 	void insertBoard(BoardDTO board);
 
-	List<BoardDTO> selectBoard();
+	List<BoardDTO> boardList(int page);
+	
+	BoardDTO boardDetail(Long boardNo);
+
+	int boardCount();
 }

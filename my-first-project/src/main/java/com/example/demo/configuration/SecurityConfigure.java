@@ -45,7 +45,7 @@ public class SecurityConfigure {
 					   .authorizeHttpRequests(requests->
 					   {
 						   requests.requestMatchers(HttpMethod.POST,"/log-in","/members").permitAll();
-						   requests.requestMatchers(HttpMethod.GET,"/productinfo/**","boards/**").permitAll();
+						   requests.requestMatchers(HttpMethod.GET,"/productinfo/**","/boards/**").permitAll();
 						   requests.requestMatchers(HttpMethod.POST, "/like", "/my-page","/boards/**").authenticated();
 						   requests.requestMatchers("/admin/**").hasRole("ADMIN");
 						   

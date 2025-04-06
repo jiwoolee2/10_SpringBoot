@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		System.out.println(user);
 		
-		 MyUserDetails myUserDetails = MyUserDetails.builder().username(user.getMemberId())
+		MyUserDetails myUserDetails = MyUserDetails.builder().username(user.getMemberId())
 												   .password(user.getMemberPw())
 												   .memberName(user.getMemberName())
 												   .memberPhone(user.getMemberPhone())

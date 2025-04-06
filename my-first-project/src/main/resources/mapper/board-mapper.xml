@@ -21,7 +21,32 @@
   	</insert>
   
   
-  	<select id="selectBoard" resultType="com.example.demo.board.model.dto.BoardDTO">
+  	<select id="boardList" resultType="com.example.demo.board.model.dto.BoardDTO">
+  		SELECT
+  				 BOARD_NO
+  			   , BOARD_TITLE
+  			   , BOARD_CONTENT
+  			   , BOARD_WRITER
+  			   , CREATE_DATE
+  	     FROM
+  	     		QUESTION_BOARD
+ 		ORDER 
+  	       BY 
+  	            CREATE_DATE DESC
+  	</select>
+  	
+  	
+  	<select id="boardCount" resultType="int">
+	    SELECT 
+	  		   COUNT(*) 
+	  	  FROM 
+	  	  	   QUESTION_BOARD
+	</select>
+  	
+  	
+  	<select id="boardDetail" 
+  				parameterType="long"
+  				resultType="com.example.demo.board.model.dto.BoardDTO">
   		SELECT
   				 BOARD_NO
   			   , BOARD_TITLE
@@ -31,8 +56,9 @@
   	     FROM
   	     		QUESTION_BOARD
 
+  	    WHERE
+  	    		BOARD_NO = #{boardNo} 
+  	   
   	</select>
-  	  <!--  WHERE
-  	    		BOARD_WRITER = #{memberId}  	-->
   
   </mapper>
