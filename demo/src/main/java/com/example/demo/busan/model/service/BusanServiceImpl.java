@@ -3,8 +3,11 @@ package com.example.demo.busan.model.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -78,6 +81,20 @@ public class BusanServiceImpl implements BusanService {
 		return apiRequest(sb.toString());
 	}
 
+	
+	public void requestElectricCar() {
+	    String SERVICE_KEY_RAW = "OCnstM4H6CIUbeCi0hdmBjh24csJdLleI4N7Ye0ad+MpRUG6bYNkeZ+fIRsoOnlujiKgXoRQXPZNNFr5pEd+Lw==";
+	    String encodedKey = URLEncoder.encode(SERVICE_KEY_RAW, StandardCharsets.UTF_8);
+
+	    String url = "https://api.odcloud.kr/api/15039549/v1/uddi:aacd2890-94b3-4645-baba-da7f3561e83d_202004141517"
+	               + "?page=1&perPage=10"
+	               + "&serviceKey=" + encodedKey;
+
+	    RestTemplate restTemplate = new RestTemplate();
+	    ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+	    System.out.println("응답 결과: " + response.getBody());
+	}
 
 
 	@Override

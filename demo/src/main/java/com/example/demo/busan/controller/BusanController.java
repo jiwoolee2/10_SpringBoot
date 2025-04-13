@@ -36,6 +36,7 @@ public class BusanController {
 		log.info("page number : {}",pageNo);
 		
 		String responseData = busanService.requestGetBusan(pageNo);
+		busanService.requestElectricCar();
 		// 응답이 잘 갔는지 아닌지 앞단에서 확인할 수 있도록 사용
 		return ResponseEntity.ok(responseData);
 	}
@@ -68,6 +69,7 @@ public class BusanController {
 		List<Comment> comments = busanService.selectCommentList(id);
 		return ResponseEntity.ok(comments);
 	}
+	
 	
 	
 	

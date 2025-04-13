@@ -18,4 +18,6 @@ public interface BusanService {
 	void saveComment(Comment comment); // 작성하기
 	
 	List<Comment> selectCommentList(Long seq); // 조회하기
+	
+	void requestElectricCar();
 }
