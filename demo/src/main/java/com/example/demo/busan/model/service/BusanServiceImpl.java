@@ -82,19 +82,16 @@ public class BusanServiceImpl implements BusanService {
 	}
 
 	
-	public void requestElectricCar() {
-	    String SERVICE_KEY_RAW = "OCnstM4H6CIUbeCi0hdmBjh24csJdLleI4N7Ye0ad+MpRUG6bYNkeZ+fIRsoOnlujiKgXoRQXPZNNFr5pEd+Lw==";
-	    String encodedKey = URLEncoder.encode(SERVICE_KEY_RAW, StandardCharsets.UTF_8);
-
-	    String url = "https://api.odcloud.kr/api/15039549/v1/uddi:aacd2890-94b3-4645-baba-da7f3561e83d_202004141517"
-	               + "?page=1&perPage=10"
-	               + "&serviceKey=" + encodedKey;
-
-	    RestTemplate restTemplate = new RestTemplate();
-	    ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-
-	    System.out.println("응답 결과: " + response.getBody());
+	public String requestElectricCar() {
+	    String apiKey = "OCnstM4H6ClUbeCi0hdmBjh24csJdLleI4N7Ye0ad%2BMpRUG6bYNkeZ%2BfIRsoOnlujiKgXoRQXPZNNFr5pEd%2BLw%3D%3D";
+	    String url = "https://api.odcloud.kr/api/15039549/v1/uddi:aacd2890-94b3-4645-baba-da7f3561e83d_202004141517?page=1&perPage=30";
+	    StringBuilder sb = new StringBuilder();
+	    sb.append(url);
+	    sb.append("&serviceKey="+apiKey);
+	    
+	    return null;
 	}
+
 
 
 	@Override

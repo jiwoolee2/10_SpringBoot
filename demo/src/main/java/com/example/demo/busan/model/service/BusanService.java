@@ -19,5 +19,5 @@ public interface BusanService {
 	
 	List<Comment> selectCommentList(Long seq); // 조회하기
 	
-	void requestElectricCar();
+	String requestElectricCar();
 }

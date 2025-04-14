@@ -27,18 +27,25 @@ import lombok.extern.slf4j.Slf4j;
 public class BusanController {
 
 	private final BusanService busanService;
-	{
-		
-	}
+	
 	@GetMapping
 	public ResponseEntity<String> getBusanFoods(@RequestParam(name="pageNo",defaultValue="1")int pageNo) {
 		
 		log.info("page number : {}",pageNo);
 		
 		String responseData = busanService.requestGetBusan(pageNo);
-		busanService.requestElectricCar();
+		
 		// 응답이 잘 갔는지 아닌지 앞단에서 확인할 수 있도록 사용
 		return ResponseEntity.ok(responseData);
+	}
+	
+	@GetMapping("/EV")
+	public ResponseEntity<String> requestElectricCar() {
+		
+		log.info("저 나와요?");
+		busanService.requestElectricCar();
+//		return ResponseEntity.ok(responseData);
+		return null;
 	}
 	
 	// 2절하기
